@@ -120,8 +120,12 @@ target(name: 'createApplicationProject',
         template: 'Events',
         path:     'griffon-app/conf')
 
-    copyGriffonResources("${basedir}/griffon-app/resources", '/archetypes/jumpstart/griffon-app/resources/*')
-    copyGriffonResources("${basedir}/griffon-app/i18n", '/archetypes/jumpstart/griffon-app/i18n/*')
+    ant.copy(todir: "${basedir}/griffon-app/resources", overwrite: true, force: true) {
+        fileset(dir: "${archetypeDirPath}/griffon-app/resources")
+    }
+    ant.copy(todir: "${basedir}/griffon-app/i18n", overwrite: true, force: true) {
+        fileset(dir: "${archetypeDirPath}/griffon-app/i18n")
+    }
     ant.replace(dir: "${basedir}/griffon-app/i18n") {
         replacefilter(token: "@griffon.project.name@", value: GriffonNameUtils.capitalize(griffonAppName))
     }
