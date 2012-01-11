@@ -28,6 +28,9 @@ target(name: 'createApplicationProject',
        prehook: null, posthook: null) {
     createProjectWithDefaults()
 
+    Metadata md = Metadata.getInstance(new File("${basedir}/application.properties"))
+    installPluginExternal md, 'swing'
+
     argsMap.model      = 'MainModel'
     argsMap.view       = 'MainView'
     argsMap.controller = 'MainController'
@@ -146,8 +149,7 @@ swing {
 }
 """)
 
-    Metadata md = Metadata.getInstance(new File("${basedir}/application.properties"))
-    installPluginsLatest md, ['swing', 'actions', 'glazedlists', 'miglayout']
+    installPluginsLatest md, ['actions', 'glazedlists', 'miglayout']
 }
 
 qualify = { className ->
