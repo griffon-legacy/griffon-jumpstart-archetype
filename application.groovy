@@ -20,11 +20,8 @@
 
 import griffon.util.GriffonNameUtils
 import griffon.util.Metadata
-import org.springframework.core.io.Resource
 
-includeTargets << griffonScript("_GriffonPlugins")
-includeTargets << griffonScript("_GriffonInit")
-includeTargets << griffonScript("CreateMvc" )
+includeTargets << griffonScript('CreateMvc')
 
 target(name: 'createApplicationProject',
        description: 'Creates a new application project',
@@ -36,29 +33,31 @@ target(name: 'createApplicationProject',
     argsMap.controller = 'MainController'
     createMVC()
 
+    baseMvcFullQualifiedClassName = mvcFullQualifiedClassName
+
     createArtifact(
-        name: mvcFullQualifiedClassName,
+        name:     baseMvcFullQualifiedClassName,
         suffix:   'Actions',
         type:     'Actions',
         template: 'MainActions',
         path:     'griffon-app/views')
 
     createArtifact(
-        name: mvcFullQualifiedClassName,
+        name:     baseMvcFullQualifiedClassName,
         suffix:   'MenuBar',
         type:     'MenuBar',
         template: 'MainMenuBar',
         path:     'griffon-app/views')
 
     createArtifact(
-        name: mvcFullQualifiedClassName,
+        name:     baseMvcFullQualifiedClassName,
         suffix:   'StatusBar',
         type:     'StatusBar',
         template: 'MainStatusBar',
         path:     'griffon-app/views')
 
     createArtifact(
-        name: mvcFullQualifiedClassName,
+        name:     baseMvcFullQualifiedClassName,
         suffix:   'Content',
         type:     'Content',
         template: 'MainContent',
@@ -69,7 +68,7 @@ target(name: 'createApplicationProject',
     argsMap.controller = ''
 
     createArtifact(
-        name: qualify('AbstractDialogModel'),
+        name:     qualify('AbstractDialogModel'),
         suffix:   '',
         type:     'Model',
         template: 'AbstractDialogModel',
@@ -77,7 +76,7 @@ target(name: 'createApplicationProject',
 
     if(fileType == '.java') {
         createArtifact(
-            name: qualify('AbstractDialogView'),
+            name:     qualify('AbstractDialogView'),
             suffix:   '',
             type:     'View',
             template: 'AbstractDialogView',
@@ -85,13 +84,13 @@ target(name: 'createApplicationProject',
     }
 
     createArtifact(
-        name: qualify('DialogController'),
+        name:     qualify('DialogController'),
         suffix:   '',
         type:     'Controller',
         template: 'DialogController',
         path:     'griffon-app/controllers')
 
-    argsMap.withController = qualify('DialogController')
+    argsMap['with-controller'] = qualify('DialogController')
     argsMap.view      = 'AboutView'
     argsMap.model     = 'AboutModel'
     argsMap.params[0] = qualify('about')
@@ -112,13 +111,21 @@ target(name: 'createApplicationProject',
     argsMap.params[0] = qualify('preferences')
     createMVC()
 
-    argsMap.skipPackagePrompt = true
+    argsMap['skip-package-prompt'] = true
+
     createArtifact(
         name:     'Events',
         suffix:   '',
         type:     'Events',
         template: 'Events',
         path:     'griffon-app/conf')
+
+    createArtifact(
+        name:     baseMvcFullQualifiedClassName,
+        suffix:   'WindowDisplayHandler',
+        type:     'WindowDisplayHandler',
+        template: 'WindowDisplayHandler',
+        path:     'src/main')
 
     ant.copy(todir: "${basedir}/griffon-app/resources", overwrite: true, force: true) {
         fileset(dir: "${archetypeDirPath}/griffon-app/resources")
@@ -131,32 +138,16 @@ target(name: 'createApplicationProject',
     }
 
     File configFile = new File("${basedir}/griffon-app/conf/Config.groovy")
-    configFile.append('''
-import griffon.swing.SwingUtils
-import java.awt.Dialog
-
+    configFile.append("""
 swing {
     windowManager {
-        defaultShow = {w, app ->
-            if(!(w instanceof Dialog)) SwingUtils.centerOnScreen(w)
-            w.visible = true
-        }
-        defaultHide = {w, app ->
-            if(w instanceof Dialog || app.windowManager.windows.findAll{it.visible}.size() > 1) {
-                w.dispose()
-            } else {
-                if(app.config.shutdown.proceed) w.dispose()
-            }
-        }
+        defaultHandler = new ${baseMvcFullQualifiedClassName}WindowDisplayHandler()
     }
 }
-''')
+""")
 
     Metadata md = Metadata.getInstance(new File("${basedir}/application.properties"))
-    // installPluginExternal md, 'swing'
-    installPluginExternal md, 'actions'
-    installPluginExternal md, 'glazedlists'
-    installPluginExternal md, 'miglayout'
+    installPluginsLatest md, ['swing', 'actions', 'glazedlists', 'miglayout']
 }
 
 qualify = { className ->

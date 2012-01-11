@@ -19,7 +19,7 @@
  */
 class JumpstartGriffonArchetype {
     String version = '1.0'
-    String griffonVersion = '0.9.5 > *'
+    String griffonVersion = '0.9.5-SNAPSHOT > *'
     String license = 'Apache Software License 2.0'
     List authors = [
         [
@@ -78,8 +78,8 @@ This will create the following artifacts
  - griffon-app/controllers/sample/SampleController.groovy
 
 You can tweak all artifacts to match you're own needs.
-Pay clsoe attention to the conventions specified in the main MVC model. Controller actions
-weill be harvested using the *actions* plugin. All messages are interntionalized thanks to
+Pay close attention to the conventions specified in the main MVC model. Controller actions
+will be harvested using the *actions* plugin. All messages are internationalized thanks to
 the *i18n* plugin, which means you only need to create a messages.properties file that follows
 your own language conventions.
  
