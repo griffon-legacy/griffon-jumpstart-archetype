@@ -90,7 +90,7 @@ target(name: 'createApplicationProject',
         name:     qualify('DialogController'),
         suffix:   '',
         type:     'Controller',
-        template: 'DialogController',
+        template: 'JumpstartDialogController',
         path:     'griffon-app/controllers')
 
     argsMap['with-controller'] = qualify('DialogController')

@@ -19,8 +19,10 @@
  */
 class JumpstartGriffonArchetype {
     String version = '1.0'
-    String griffonVersion = '0.9.5-SNAPSHOT > *'
+    String griffonVersion = '0.9.5 > *'
     String license = 'Apache Software License 2.0'
+    String documentation = ''
+    String source = 'https://github.com/griffon/griffon-jumpstart-archetype'
     List authors = [
         [
             name: 'Andres Almiray',
@@ -92,7 +94,4 @@ Create a Java based application with the following command
 
 [1]: https://wiki.ubuntu.com/Quickly
 '''
-
-    // URL to the archetype's documentation
-    String documentation = 'http://griffon.codehaus.org/Jumpstart+Archetype'
 }
