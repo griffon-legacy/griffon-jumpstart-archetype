@@ -18,7 +18,7 @@
  * @author Andres Almiray
  */
 class JumpstartGriffonArchetype {
-    String version = '1.0'
+    String version = '1.1'
     String griffonVersion = '0.9.5 > *'
     String license = 'Apache Software License 2.0'
     String documentation = ''

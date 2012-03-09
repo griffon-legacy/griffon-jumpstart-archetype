@@ -23,7 +23,7 @@ public abstract class AbstractDialogView extends AbstractGriffonView {
 
     @Override
     public void mvcGroupInit(Map<String, Object> args) {
-        execSync(new Runnable() {
+        execInsideUISync(new Runnable() {
             public void run() {
                 content = buildContent();
             }
@@ -33,7 +33,7 @@ public abstract class AbstractDialogView extends AbstractGriffonView {
     protected abstract JComponent buildContent();
 
     public final void show(final Window window) {
-        execSync(new Runnable() {
+        execInsideUISync(new Runnable() {
             public void run() {
                 Window owner = findOwner(window);
                 if (dialog == null || dialog.getOwner() != owner) {
@@ -47,7 +47,7 @@ public abstract class AbstractDialogView extends AbstractGriffonView {
     }
 
     public final void hide() {
-        execSync(new Runnable() {
+        execInsideUISync(new Runnable() {
             public void run() {
                 if (dialog != null) {
                     getWindowManager().hide(dialog);
