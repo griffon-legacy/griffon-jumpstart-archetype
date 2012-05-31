@@ -65,6 +65,6 @@ public class @artifact.name.plain@MenuBar {
     }
 
     private static String message(String key, String defaultValue) {
-        return MessageSourceHolder.getMessageSource().getMessage(key, defaultValue);
+        return MessageSourceHolder.getInstance().getMessageSource().getMessage(key, defaultValue);
     }
 }

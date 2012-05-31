@@ -15,6 +15,6 @@ public class @artifact.name@ extends AbstractGriffonModel {
     }
 
     public void mvcGroupInit(Map<String, Object> args) {
-        setStatus("Welcome to " + GriffonNameUtils.capitalize(MessageSourceHolder.getMessageSource().getMessage("application.title")));
+        setStatus("Welcome to " + GriffonNameUtils.capitalize(MessageSourceHolder.getInstance().getMessageSource().getMessage("application.title")));
     }
 }

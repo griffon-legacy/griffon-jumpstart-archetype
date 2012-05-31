@@ -56,6 +56,6 @@ public abstract class AbstractDialogModel extends AbstractGriffonModel {
     protected abstract String getDialogTitle();
 
     public void mvcGroupInit(Map<String, Object> args) {
-        title = GriffonNameUtils.capitalize(MessageSourceHolder.getMessageSource().getMessage("application.dialog." + getDialogKey() + ".title", getDialogTitle()));
+        title = GriffonNameUtils.capitalize(MessageSourceHolder.getInstance().getMessageSource().getMessage("application.dialog." + getDialogKey() + ".title", getDialogTitle()));
     }
 }

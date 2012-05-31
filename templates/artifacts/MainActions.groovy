@@ -9,7 +9,7 @@ actions {
    action(copyAction, enabled: false)
    action(pasteAction, enabled: false)
    action(deleteAction,
-      accelerator: KeyStroke.getKeyStroke(app.getMessage('application.action.Delete.shortcut', 'DELETE')),
+      accelerator: KeyStroke.getKeyStroke(app.getMessage('application.action.Delete.accelerator', 'meta DELETE')),
       enabled: false
    )
 }

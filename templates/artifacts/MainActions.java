@@ -70,7 +70,7 @@ public class @artifact.name.plain@Actions {
 
     public static Action deleteAction() {
         return action(actionFor("delete"))
-                    .withAccelerator(KeyStroke.getKeyStroke(message("application.action.Delete.shortcut", "DELETE")))
+                    .withAccelerator(KeyStroke.getKeyStroke(message("application.action.Delete.accelerator", "meta DELETE")))
                     .withEnabled(false)
                     .build();
     }
@@ -84,6 +84,6 @@ public class @artifact.name.plain@Actions {
     }
 
     private static String message(String key, String defaultValue) {
-        return MessageSourceHolder.getMessageSource().getMessage(key, defaultValue);
+        return MessageSourceHolder.getInstance().getMessageSource().getMessage(key, defaultValue);
     }
 }

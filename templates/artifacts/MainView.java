@@ -89,6 +89,6 @@ public class @artifact.name@ extends AbstractGriffonView {
     }
 
     private String message(String key, String defaultValue) {
-        return MessageSourceHolder.getMessageSource().getMessage(key, defaultValue);
+        return MessageSourceHolder.getInstance().getMessageSource().getMessage(key, defaultValue);
     }
 }

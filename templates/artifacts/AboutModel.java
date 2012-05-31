@@ -54,7 +54,7 @@ public class AboutModel extends AbstractDialogModel {
     public void mvcGroupInit(Map<String, Object> args) {
         super.mvcGroupInit(args);
         setResizable(false);
-        setDescription(MessageSourceHolder.getMessageSource().getMessage("application.dialog.About.description", asList(Metadata.getCurrent().getGriffonVersion())));
+        setDescription(MessageSourceHolder.getInstance().getMessageSource().getMessage("application.dialog.About.description", asList(Metadata.getCurrent().getGriffonVersion())));
 
         List<Map<String, String>> tmp = new ArrayList<Map<String, String>>();
         for (String addonName : getApp().getAddonManager().getAddonDescriptors().keySet()) {
