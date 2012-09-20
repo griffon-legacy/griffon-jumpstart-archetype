@@ -18,8 +18,8 @@
  * @author Andres Almiray
  */
 class JumpstartGriffonArchetype {
-    String version = '1.3'
-    String griffonVersion = '0.9.5 > *'
+    String version = '1.4'
+    String griffonVersion = '1.1.0 > *'
     String license = 'Apache Software License 2.0'
     String documentation = ''
     String source = 'https://github.com/griffon/griffon-jumpstart-archetype'
@@ -45,7 +45,7 @@ Usage
 Simply specify the name of the archetype (*jumpstart*) when invoking the `create-app`
 command, like this
 
-    griffon create-app sample -archetype=jumpstart
+    griffon create-app sample --archetype=jumpstart
 
 This will create the following artifacts
 
@@ -80,9 +80,10 @@ This will create the following artifacts
  - griffon-app/controllers/sample/SampleController.groovy
 
 You can tweak all artifacts to match you're own needs.
+
 Pay close attention to the conventions specified in the main MVC model. Controller actions
-will be harvested using the *actions* plugin. All messages are internationalized thanks to
-the *i18n* plugin, which means you only need to create a messages.properties file that follows
+will be harvested using the application's *ActionManager*. All messages are internationalized,
+which means you only need to create a `messages.properties` file that follows
 your own language conventions.
  
 Configuration
@@ -90,7 +91,7 @@ Configuration
 The Jumpstart archetype supports Java files too.
 Create a Java based application with the following command
 
-    griffon create-app sample -archetype=jumpstart -fileType=java
+    griffon create-app sample --archetype=jumpstart --file-type=java
 
 [1]: https://wiki.ubuntu.com/Quickly
 '''

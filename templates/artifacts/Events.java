@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 import griffon.core.GriffonApplication;
 import griffon.core.ShutdownHandler;
 import griffon.swing.SwingGriffonApplication;
-import griffon.plugins.i18n.MessageSourceHolder;
+import griffon.util.ApplicationHolder;
 
 public class Events {
     public void onBootstrapEnd(GriffonApplication app) {
@@ -23,7 +23,7 @@ public class Events {
                             window,
                             message("application.confirm.shutdown.message", "Do you really want to exit?"),
                             message("application.confirm.shutdown.title","Exit"),
-                            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;                   
+                            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
                     app.getConfig().put("shutdown.proceed", proceed);
                     return proceed;
                 }
@@ -36,6 +36,6 @@ public class Events {
     }
 
     private String message(String key, String defaultValue) {
-        return MessageSourceHolder.getInstance().getMessageSource().getMessage(key, defaultValue);
+        return ApplicationHolder.getApplication().getMessage(key, defaultValue);
     }
 }

@@ -6,8 +6,6 @@ import griffon.util.Metadata;
 
 import java.util.*;
 
-import griffon.plugins.i18n.MessageSourceHolder;
-
 import static java.util.Arrays.asList;
 
 public class AboutModel extends AbstractDialogModel {
@@ -54,7 +52,7 @@ public class AboutModel extends AbstractDialogModel {
     public void mvcGroupInit(Map<String, Object> args) {
         super.mvcGroupInit(args);
         setResizable(false);
-        setDescription(MessageSourceHolder.getInstance().getMessageSource().getMessage("application.dialog.About.description", asList(Metadata.getCurrent().getGriffonVersion())));
+        setDescription(getApp().getMessage("application.dialog.About.description", asList(Metadata.getCurrent().getGriffonVersion())));
 
         List<Map<String, String>> tmp = new ArrayList<Map<String, String>>();
         for (String addonName : getApp().getAddonManager().getAddonDescriptors().keySet()) {

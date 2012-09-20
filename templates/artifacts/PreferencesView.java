@@ -1,12 +1,11 @@
 @artifact.package@import javax.swing.*;
 
 import net.miginfocom.swing.MigLayout;
-import griffon.plugins.actions.ActionManager;
 import static griffon.swing.SwingAction.action;
 
 public class PreferencesView extends AbstractDialogView {
     protected JComponent buildContent() {
-        Action hideAction = action(ActionManager.getInstance().actionFor(controller, "hideAction"))
+        Action hideAction = action(actionFor("hideAction"))
                 .withName(message("application.action.Close.name", "Close"))
                 .withMnemonic(message("application.action.Close.mnemonic", "C"))
                 .withShortDescription(message("application.action.Close.short_description", "Close"))
@@ -25,5 +24,9 @@ public class PreferencesView extends AbstractDialogView {
         panel.getActionMap().put(actionKey, hideAction);
 
         return panel;
+    }
+
+    private Action actionFor(String actionName) {
+        return (Action) getApp().getActionManager().actionFor(controller, actionName).getToolkitAction();
     }
 }

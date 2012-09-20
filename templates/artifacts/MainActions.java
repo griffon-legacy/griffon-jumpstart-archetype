@@ -1,8 +1,6 @@
 @artifact.package@import javax.swing.*;
 import griffon.util.ApplicationHolder;
 import griffon.util.RunnableWithArgs;
-import griffon.plugins.i18n.MessageSourceHolder;
-import griffon.plugins.actions.ActionManager;
 import static griffon.swing.SwingAction.action;
 
 public class @artifact.name.plain@Actions {
@@ -76,7 +74,7 @@ public class @artifact.name.plain@Actions {
     }
 
     private static Action actionFor(String actionName) {
-        return ActionManager.getInstance().actionFor(controller(), actionName);
+        return (Action) ApplicationHolder.getApplication().getActionManager().actionFor(controller(), actionName).getToolkitAction();
     }
 
     private static @artifact.name.plain@Controller controller() {
@@ -84,6 +82,6 @@ public class @artifact.name.plain@Actions {
     }
 
     private static String message(String key, String defaultValue) {
-        return MessageSourceHolder.getInstance().getMessageSource().getMessage(key, defaultValue);
+        return ApplicationHolder.getApplication().getMessage(key, defaultValue);
     }
 }

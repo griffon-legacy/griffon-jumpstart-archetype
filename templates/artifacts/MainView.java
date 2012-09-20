@@ -9,7 +9,6 @@ import griffon.util.GriffonNameUtils;
 import griffon.util.ConfigUtils;
 import griffon.swing.SwingGriffonApplication;
 import org.codehaus.griffon.runtime.core.AbstractGriffonView;
-import griffon.plugins.i18n.MessageSourceHolder;
 
 public class @artifact.name@ extends AbstractGriffonView {
     private @artifact.name.plain@Controller controller;
@@ -89,6 +88,6 @@ public class @artifact.name@ extends AbstractGriffonView {
     }
 
     private String message(String key, String defaultValue) {
-        return MessageSourceHolder.getInstance().getMessageSource().getMessage(key, defaultValue);
+        return getApp().getMessage(key, defaultValue);
     }
 }

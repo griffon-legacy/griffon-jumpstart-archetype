@@ -1,5 +1,5 @@
 @artifact.package@import javax.swing.*;
-import griffon.plugins.i18n.MessageSourceHolder;
+import griffon.util.ApplicationHolder;
 import static griffon.util.GriffonApplicationUtils.*;
 
 public class @artifact.name.plain@MenuBar {
@@ -65,6 +65,6 @@ public class @artifact.name.plain@MenuBar {
     }
 
     private static String message(String key, String defaultValue) {
-        return MessageSourceHolder.getInstance().getMessageSource().getMessage(key, defaultValue);
+        return ApplicationHolder.getApplication().getMessage(key, defaultValue);
     }
 }

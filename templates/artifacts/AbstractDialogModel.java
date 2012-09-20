@@ -1,5 +1,4 @@
 @artifact.package@import griffon.util.GriffonNameUtils;
-import griffon.plugins.i18n.MessageSourceHolder;
 import org.codehaus.griffon.runtime.core.AbstractGriffonModel;
 
 import java.util.Map;
@@ -56,6 +55,6 @@ public abstract class AbstractDialogModel extends AbstractGriffonModel {
     protected abstract String getDialogTitle();
 
     public void mvcGroupInit(Map<String, Object> args) {
-        title = GriffonNameUtils.capitalize(MessageSourceHolder.getInstance().getMessageSource().getMessage("application.dialog." + getDialogKey() + ".title", getDialogTitle()));
+        title = GriffonNameUtils.capitalize(getApp().getMessage("application.dialog." + getDialogKey() + ".title", getDialogTitle()));
     }
 }

@@ -1,5 +1,4 @@
-@artifact.package@import griffon.plugins.i18n.MessageSourceHolder;
-import griffon.util.GriffonNameUtils;
+@artifact.package@import griffon.util.GriffonNameUtils;
 import org.codehaus.griffon.runtime.core.AbstractGriffonModel;
 import java.util.Map;
 
@@ -15,6 +14,6 @@ public class @artifact.name@ extends AbstractGriffonModel {
     }
 
     public void mvcGroupInit(Map<String, Object> args) {
-        setStatus("Welcome to " + GriffonNameUtils.capitalize(MessageSourceHolder.getInstance().getMessageSource().getMessage("application.title")));
+        setStatus("Welcome to " + GriffonNameUtils.capitalize(getApp().getMessage("application.title")));
     }
 }

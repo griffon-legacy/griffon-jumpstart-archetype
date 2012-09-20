@@ -3,7 +3,7 @@ import griffon.core.MVCClosure;
 import java.awt.event.ActionEvent;
 import org.codehaus.griffon.runtime.core.AbstractGriffonController;
 
-public class @artifact.name@ extends AbstractGriffonController {    
+public class @artifact.name@ extends AbstractGriffonController {
     public void newAction(ActionEvent event) {
     }
 

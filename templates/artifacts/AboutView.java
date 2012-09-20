@@ -15,7 +15,6 @@ import java.awt.*;
 import java.util.Map;
 
 import net.miginfocom.swing.MigLayout;
-import griffon.plugins.actions.ActionManager;
 import static griffon.swing.SwingAction.action;
 
 public class AboutView extends AbstractDialogView {
@@ -24,7 +23,7 @@ public class AboutView extends AbstractDialogView {
         Action creditsAction = null;
         Action licenseAction = null;
 
-        Action hideAction = action(ActionManager.getInstance().actionFor(controller, "hideAction"))
+        Action hideAction = action(actionFor("hideAction"))
                 .withName(message("application.action.Close.name", "Close"))
                 .withMnemonic(message("application.action.Close.mnemonic", "C"))
                 .withShortDescription(message("application.action.Close.short_description", "Close"))
@@ -127,5 +126,9 @@ public class AboutView extends AbstractDialogView {
 
     private AboutModel aboutModel() {
         return (AboutModel) model;
+    }
+
+    private Action actionFor(String actionName) {
+        return (Action) getApp().getActionManager().actionFor(controller, actionName).getToolkitAction();
     }
 }

@@ -149,7 +149,7 @@ swing {
 }
 """)
 
-    installPluginsLatest md, ['actions', 'glazedlists', 'miglayout']
+    installPluginsLatest md, ['glazedlists', 'miglayout']
 }
 
 qualify = { className ->

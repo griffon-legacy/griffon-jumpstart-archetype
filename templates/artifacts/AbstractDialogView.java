@@ -4,7 +4,6 @@ import java.util.Map;
 
 import griffon.swing.SwingGriffonApplication;
 import griffon.swing.WindowManager;
-import griffon.plugins.i18n.MessageSourceHolder;
 import org.codehaus.griffon.runtime.core.AbstractGriffonView;
 
 public abstract class AbstractDialogView extends AbstractGriffonView {
@@ -58,7 +57,7 @@ public abstract class AbstractDialogView extends AbstractGriffonView {
     }
 
     protected String message(String key, String defaultValue) {
-        return MessageSourceHolder.getInstance().getMessageSource().getMessage(key, defaultValue);
+        return getApp().getMessage(key, defaultValue);
     }
 
     protected Window findOwner(Window window) {
